@@ -1,0 +1,102 @@
+using System.Collections;
+
+namespace GroceryStore
+{
+    class GroceryManager
+    {
+        static ArrayList  storeRecord = new ArrayList();
+        public static void Main(string[] args)
+        {
+
+           int choice;
+            do
+            {
+                Console.WriteLine("Menu");
+                Console.WriteLine("1. Add item to the grocery list");
+                Console.WriteLine("2. Remove item from the grocery list");
+                Console.WriteLine("3. Display current items in the grocery list");
+                Console.WriteLine("4. Check if there is an item in the grocery list");
+                Console.WriteLine("5. Exit");
+                Console.WriteLine("Enter your choice");
+
+                choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("What item do you want to add");
+                        string newItem = Console.ReadLine();
+                        AddGroceryItem(newItem);
+                        break;
+
+                    case 2:
+                        Console.WriteLine("What item do you eant to remove");
+                        string removeItem = Console.ReadLine();
+                        RemoveGroceryItem(removeItem);
+                        break;
+
+                    case 3:
+                        Console.WriteLine("The items in the grocery list are");
+                        DisplayGroceryItem();
+                        break;
+
+                    case 4:
+                        Console.WriteLine("What item do you want to check for");
+                        string checkItem = Console.ReadLine();
+                        CheckGroceryItem(checkItem);
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Exiting Program");
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid input. PLease enter a number from 1 to 5");
+                        break;
+                }
+
+
+            } while (choice != 5);
+
+        }
+
+        public static  void  AddGroceryItem( string item)
+        {
+            storeRecord.Add(item);
+            Console.WriteLine($"{item} has been added to the grocery list");
+        }
+
+        public static void RemoveGroceryItem(string item)
+        {
+            if (storeRecord.Contains(item)){
+                storeRecord.Remove(item);
+                Console.WriteLine($"{item} has been Removed to the grocery list");
+            }
+            else
+            {
+                Console.WriteLine($"{item} is not on the list");
+            }
+            
+        }
+
+        public static void DisplayGroceryItem()
+        {
+           foreach (string items in storeRecord)
+            {
+                Console.WriteLine($"{items}");
+            }
+        }
+
+        public static void CheckGroceryItem(string item)
+        {
+            if (storeRecord.Contains(item))
+            {
+                Console.WriteLine($"{item} is precsent in the list");
+            }
+            else
+            {
+                Console.WriteLine($"{item} is not available");
+            }
+        }
+    }
+}
